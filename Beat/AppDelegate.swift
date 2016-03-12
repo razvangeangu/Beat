@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Beat
 //
-//  Created by Ana-Maria Voicila on 3/12/16.
+//  Created by Razvan-Gabriel Geangu on 3/12/16.
 //  Copyright © 2016 Razvan-Gabriel Geangu. All rights reserved.
 //
 
