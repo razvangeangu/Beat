@@ -11,13 +11,17 @@ The song is selected from a playlist, integrated in the app. The server support 
 
 ### Installation
 Install the Android .apk from HERE
+
 Come to us(next to the queen) to get the iOS version installed
 
 ### Getting-started
 One of the people that are to be connected selects the part of the host. They create the room by setting it a name.
+
 The other person(or people) then joins the room by entering its name.
+
 The host then selects the song and it gets played on both(or all) devices.
 
 ### Explore
 Try out with pausing, changing the song or skipping through it.
+
 Listen the same music as your friend(s) no matter where they are.
