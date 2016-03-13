@@ -18,13 +18,13 @@ class HostViewController : UIViewController {
     var songName : String! = "None"
     var songURLString : String! = "None"
     
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        getSongsFromServer()
         getChannel()
     }
     
@@ -33,31 +33,46 @@ class HostViewController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func searchButtonAction(sender: AnyObject) {
-        songName = textField.text
-//        NSLog("Searching for song: " + songName)
-        let url = NSURL(string: "https://fb-beat.herokuapp.com/\(channelName):\(songName)")
-//        print(url)
+    func getSongsFromServer() {
+        let songs = [
+            ("first"),
+            ("seconds")
+        ]
+        let url = NSURL(string: "https://fb-beat.herokuapp.com/getsongs")
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (data, response, error) in
             dispatch_async(dispatch_get_main_queue(), {
                 var dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
                 print("Datastring: " + (dataString as String))
+                
+//                if dataString == "True" {
+//                    var alert = UIAlertController(title: "Congratulations", message: "Your song has been found", preferredStyle: UIAlertControllerStyle.Alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+//                    self.presentViewController(alert, animated: true, completion: nil)
+//                }
+//                for var i = 0; i < 5; i++ {
+//                    songs.append((i as? String)!)
+//                }
+                
             })
         }
         
         task.resume()
     }
     
+    
+    
     @IBAction func playButtonAction(sender: AnyObject) {
         let url = NSURL(string: "https://fb-beat.herokuapp.com/start/\(channelName)")
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (data, response, error) in
             dispatch_async(dispatch_get_main_queue(), {
-                var dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                print(dataString)
+//                var dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+//                print("hello " + (dataString as String))
             })
         }
         
         task.resume()
+        
+        playButton.setBackgroundImage(UIImage(named: "pauseButton"), forState: UIControlState.Normal)
     }
     
     @IBAction func stopButtonAction(sender: AnyObject) {
@@ -91,7 +106,7 @@ class HostViewController : UIViewController {
         pusher.connect()
         
         let myChannel = pusher.subscribe(channelNo)
-//        NSLog("Subscribed to channel: " + channelNo)
+        NSLog("Subscribed to channel: " + channelNo)
         
         myChannel.bind("song_url", callback: { (data: AnyObject?) -> Void in
             
@@ -100,6 +115,8 @@ class HostViewController : UIViewController {
                 let message  = data["message"] as! String
                 
                 NSLog("Pusher message: " + message)
+                
+                print(message)
                 
                 self.songURLString = message
             }
@@ -111,16 +128,17 @@ class HostViewController : UIViewController {
                 
                 let message  = data["message"] as! String
                 
-//                NSLog("Pusher message: " + message)
+                NSLog("Pusher message: " + message)
                 
                 if message == "play" {
+                    print(self.songURLString)
                     self.playMedia(self.songURLString)
                 }
                 
-                if message == "stop" {
-                    self.player.pause()
-                    self.player.rate = 0.0
-                }
+//                if message == "False" {
+//                    self.player.pause()
+//                    self.player.rate = 0.0
+//                }
             }
         })
     }

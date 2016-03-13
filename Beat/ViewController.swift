@@ -17,14 +17,17 @@ class ViewController: UIViewController {
     var typeOfUser : String!
     var timesPressed : Int = 1
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var topButton: UIButton!
     @IBOutlet weak var bottomButton: UIButton!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var joinButton: UIButton!
+    @IBOutlet weak var textFieldLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +43,7 @@ class ViewController: UIViewController {
             textField.hidden = false
             joinButton.hidden = false
             timesPressed += 1
+            textFieldLabel.hidden = false
             joinButton.setTitle("Create", forState: UIControlState.Normal)
         } else {
             connectionType = "network"
@@ -57,6 +61,7 @@ class ViewController: UIViewController {
             bottomButton.hidden = true
             textField.hidden = false
             joinButton.hidden = false
+            textFieldLabel.hidden = false
             timesPressed += 1
         } else {
             connectionType = "bluetooth"
