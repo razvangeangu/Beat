@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         } else {
             connectionType = "network"
             topButton.setTitle("Host", forState: UIControlState.Normal)
-            bottomButton.setTitle("Client", forState: UIControlState.Normal)
+            bottomButton.setTitle("Guest", forState: UIControlState.Normal)
             bottomButton.enabled = true
             timesPressed += 1
         }
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     
     @IBAction func bottomButtonPressed(sender: AnyObject) {
         if timesPressed == 2 {
-            typeOfUser = "client"
+            typeOfUser = "guest"
             topButton.hidden = true
             bottomButton.hidden = true
             textField.hidden = false
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         } else {
             connectionType = "bluetooth"
             topButton.setTitle("Host", forState: UIControlState.Normal)
-            bottomButton.setTitle("Client", forState: UIControlState.Normal)
+            bottomButton.setTitle("Guest", forState: UIControlState.Normal)
             joinButton.setTitle("Join", forState: UIControlState.Normal)
             bottomButton.enabled = true
             timesPressed += 1
@@ -83,8 +83,8 @@ class ViewController: UIViewController {
                 self.performSegueWithIdentifier("hostControllerSegue", sender: nil)
             }
             
-            if typeOfUser == "client" {
-                self.performSegueWithIdentifier("clientControllerSegue", sender: nil)
+            if typeOfUser == "guest" {
+                self.performSegueWithIdentifier("guestControllerSegue", sender: nil)
             }
         }
         
@@ -93,8 +93,8 @@ class ViewController: UIViewController {
                 self.performSegueWithIdentifier("hostControllerSegue", sender: nil)
             }
             
-            if typeOfUser == "client" {
-                self.performSegueWithIdentifier("clientControllerSegue", sender: nil)
+            if typeOfUser == "guest" {
+                self.performSegueWithIdentifier("guestControllerSegue", sender: nil)
             }
         }
         
@@ -107,7 +107,7 @@ class ViewController: UIViewController {
             }
         }
         
-        if segue.identifier == "clientControllerSegue" {
+        if segue.identifier == "guestControllerSegue" {
             if let destinationVC = segue.destinationViewController as? ClientViewController {
                 destinationVC.channelName = channel
             }

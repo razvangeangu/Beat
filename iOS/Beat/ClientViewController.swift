@@ -1,5 +1,5 @@
 //
-//  HostViewController.swift
+//  ClientViewController.swift
 //  Beat
 //
 //  Created by Razvan-Gabriel Geangu on 3/12/16.
@@ -18,6 +18,9 @@ class ClientViewController : UIViewController {
     var songName : String! = "None"
     var songURLString : String! = "None"
     
+    @IBOutlet var mediaLabel: UILabel!
+    @IBOutlet var statusImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,8 +37,7 @@ class ClientViewController : UIViewController {
         print(url)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (data, response, error) in
             dispatch_async(dispatch_get_main_queue(), {
-                var dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                print(dataString)
+                let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
                 self.channelNo = dataString.substringWithRange(NSRange(location: 5, length: dataString.length - 5))
                 NSLog("Assigning channel: " + dataString.substringWithRange(NSRange(location: 5, length: dataString.length - 5)))
                 self.pusherMessage()
@@ -50,6 +52,8 @@ class ClientViewController : UIViewController {
         player = AVPlayer(playerItem:playerItem)
         player.rate = 1.0
         player.play()
+        
+        statusImage.image = UIImage(named: "playButton")
     }
     
     func pusherMessage() {
@@ -57,7 +61,7 @@ class ClientViewController : UIViewController {
         pusher.connect()
         
         let myChannel = pusher.subscribe(channelNo)
-        //        NSLog("Subscribed to channel: " + channelNo)
+        NSLog("Subscribed to channel: " + channelNo)
         
         myChannel.bind("song_url", callback: { (data: AnyObject?) -> Void in
             
@@ -66,6 +70,8 @@ class ClientViewController : UIViewController {
                 let message  = data["message"] as! String
                 
                 NSLog("Pusher message: " + message)
+                
+                print(message)
                 
                 self.songURLString = message
             }
@@ -77,13 +83,14 @@ class ClientViewController : UIViewController {
                 
                 let message  = data["message"] as! String
                 
-                //                NSLog("Pusher message: " + message)
+                NSLog("Pusher message: " + message)
                 
                 if message == "play" {
+                    print(self.songURLString)
                     self.playMedia(self.songURLString)
                 }
                 
-                if message == "stop" {
+                if message == "pause" {
                     self.player.pause()
                     self.player.rate = 0.0
                 }

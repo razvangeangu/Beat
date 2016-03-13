@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D043CFC35658F8563391253 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DA77FBAA0FE6D747584236 /* Pods.framework */; };
+		861105FD1C95365700A04269 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861105FC1C95365700A04269 /* Media.swift */; };
 		867A5A3A1C95233E00086955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 867A5A391C95233E00086955 /* Assets.xcassets */; };
 		868C98CD1C945F0B00E89CE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C98CC1C945F0B00E89CE3 /* AppDelegate.swift */; };
 		868C98CF1C945F0B00E89CE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C98CE1C945F0B00E89CE3 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		2DAA379F0BA70ECB30AC9222 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		861105FC1C95365700A04269 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		867A5A391C95233E00086955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		868C98C91C945F0B00E89CE3 /* Beat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868C98CC1C945F0B00E89CE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				868C98CC1C945F0B00E89CE3 /* AppDelegate.swift */,
 				868C98CE1C945F0B00E89CE3 /* ViewController.swift */,
 				868C99011C94993000E89CE3 /* HostViewController.swift */,
+				861105FC1C95365700A04269 /* Media.swift */,
 				868C99031C949A3800E89CE3 /* ClientViewController.swift */,
 				868C98D81C945F0C00E89CE3 /* LaunchScreen.storyboard */,
 				868C98DB1C945F0C00E89CE3 /* Info.plist */,
@@ -343,6 +346,7 @@
 			files = (
 				868C99021C94993000E89CE3 /* HostViewController.swift in Sources */,
 				868C98CF1C945F0B00E89CE3 /* ViewController.swift in Sources */,
+				861105FD1C95365700A04269 /* Media.swift in Sources */,
 				868C98D51C945F0B00E89CE3 /* Beat.xcdatamodeld in Sources */,
 				868C99041C949A3800E89CE3 /* ClientViewController.swift in Sources */,
 				868C98CD1C945F0B00E89CE3 /* AppDelegate.swift in Sources */,
