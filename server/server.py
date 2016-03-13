@@ -36,7 +36,7 @@ def song_fetch(id):
 	return stream_url.location
 
 def push_song(channel, id):
-	pusher_client.trigger(channel, 'song_url', {'message':song_fetch(id)})
+	pusher_client.trigger(channel, 'song_url', {'message':song_fetch(id), 'id':id})
 
 @app.route('/')
 def index():
